@@ -14,13 +14,13 @@ module Luhn
     card_array = separate_digits(number)
 
     card_array.reverse.map.with_index do |digit, i|
-      if i.odd?
-        digit = digit * 2
-        digit > 9 ? digit - 9 : digit
-      else
-        digit
-      end
+      i.odd? ? double(digit) : digit
     end
+  end
+
+  def self.double(digit)
+    digit = digit * 2
+    digit < 10 ? digit : digit - 9
   end
 
   def self.separate_digits(number)
